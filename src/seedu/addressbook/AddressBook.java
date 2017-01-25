@@ -1142,17 +1142,6 @@ public class AddressBook {
      *         UTILITY METHODS
      * ============================
      */
-
-    /**
-     * Removes sign(p/, d/, etc) from parameter string
-     *
-     * @param s  Parameter as a string
-     * @param sign  Parameter sign to be removed
-     * @return  string without the sign
-     */
-//    private static String removePrefix(String s, String sign) {
-//        return removePrefix(s, sign);
-//    }
     
     /**
     * Removes prefix from the given fullString if prefix occurs at the start of the string.
