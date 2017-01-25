@@ -133,9 +133,6 @@ public class AddressBook {
     private static final String COMMAND_EXIT_DESC = "Exits the program.";
     private static final String COMMAND_EXIT_EXAMPLE = COMMAND_EXIT_WORD;
 
-    private static final String DIVIDER = "===================================================";
-
-
     /* We use a String array to store details of a single person.
      * The constants given below are the indexes for the different data elements of a person
      * used by the internal String[] storage format.
@@ -207,18 +204,18 @@ public class AddressBook {
      */
 
     public static void main(String[] args) {
-    	showToUser(DIVIDER, DIVIDER, VERSION, MESSAGE_WELCOME, DIVIDER);
+    	showToUser("===================================================", "===================================================", VERSION, MESSAGE_WELCOME, "===================================================");
     	
     	if (args.length >= 2) {
             showToUser(MESSAGE_INVALID_PROGRAM_ARGS);
-            showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+            showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
             System.exit(0);
         }
 
         if (args.length == 1) {
             if (!isValidFilePath(args[0])) {
                 showToUser(String.format(MESSAGE_INVALID_FILE, args[0]));
-                showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+                showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
                 System.exit(0);
             }
 
@@ -235,7 +232,7 @@ public class AddressBook {
         while (true) {
             String userCommand = getUserInput();
             showToUser("[Command entered:" + userCommand + "]");
-            showToUser(executeCommand(userCommand), DIVIDER);
+            showToUser(executeCommand(userCommand), "===================================================");
         }
     }
 
@@ -516,7 +513,7 @@ public class AddressBook {
      * Requests to terminate the program.
      */
     private static void executeExitProgramRequest() {
-        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+        showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
         System.exit(0);
     }
 
@@ -651,7 +648,7 @@ public class AddressBook {
             showToUser(String.format(MESSAGE_STORAGE_FILE_CREATED, filePath));
         } catch (IOException ioe) {
             showToUser(String.format(MESSAGE_ERROR_CREATING_STORAGE_FILE, filePath));
-            showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+            showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
             System.exit(0);
         }
     }
@@ -667,7 +664,7 @@ public class AddressBook {
         final Optional<ArrayList<String[]>> successfullyDecoded = decodePersonsFromStrings(getLinesInFile(filePath));
         if (!successfullyDecoded.isPresent()) {
             showToUser(MESSAGE_INVALID_STORAGE_FILE_CONTENT);
-            showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+            showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
             System.exit(0);
         }
         return successfullyDecoded.get();
@@ -683,11 +680,11 @@ public class AddressBook {
             lines = new ArrayList<>(Files.readAllLines(Paths.get(filePath)));
         } catch (FileNotFoundException fnfe) {
             showToUser(String.format(MESSAGE_ERROR_MISSING_STORAGE_FILE, filePath));
-            showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+            showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
             System.exit(0);
         } catch (IOException ioe) {
             showToUser(String.format(MESSAGE_ERROR_READING_FROM_FILE, filePath));
-            showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+            showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
             System.exit(0);
         }
         return lines;
@@ -704,7 +701,7 @@ public class AddressBook {
             Files.write(Paths.get(storageFilePath), linesToWrite);
         } catch (IOException ioe) {
             showToUser(String.format(MESSAGE_ERROR_WRITING_TO_FILE, filePath));
-            showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+            showToUser(MESSAGE_GOODBYE, "===================================================", "===================================================");
             System.exit(0);
         }
     }
